@@ -1745,7 +1745,7 @@
                 
                 <div class="quest-section">
                     <div class="quest-section-title">
-                        📋 오늘의 일일 퀘스트
+                        📋 오늘의 생성된 퀘스트
                     </div>
                     <div id="scheduleQuestList"></div>
                     <button class="edit-schedule-btn" onclick="editTodaySchedule()">✏️ 일정 편집</button>
@@ -1753,10 +1753,10 @@
         
                 <div class="weekly-quest-section">
                     <div class="quest-section-title">
-                        📅 주간 퀘스트
+                        📅 일일 퀘스트
                     </div>
                     <div id="weeklyQuestList"></div>
-                    <button class="add-quest-btn" onclick="addWeeklyQuest()">+ 주간 퀘스트 추가</button>
+                    <button class="add-quest-btn" onclick="addWeeklyQuest()">+ 일일 퀘스트 추가</button>
                 </div>
         
                 <div class="goal-section">
@@ -1831,7 +1831,7 @@
         }
 
         function addWeeklyQuest() {
-            const title = prompt('주간 퀘스트 제목:');
+            const title = prompt('일일 퀘스트 제목:');
             if (!title) return;
 
             const startDate = prompt('시작일 (예: 2025-12-01):');
