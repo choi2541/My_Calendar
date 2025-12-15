@@ -348,6 +348,7 @@
             cursor: pointer;
             transition: all 0.3s;
             border-left: 4px solid #667eea;
+            width:95%;
         }
 
         .schedule-item:hover {
@@ -688,9 +689,12 @@
         }
 
         @keyframes bounce {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translate(-50%, -50%) translateY(0px);
             }
+
             50% {
                 transform: translate(-50%, -50%) translateY(-5px);
             }
@@ -743,9 +747,12 @@
         }
 
         @keyframes float {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translateY(0px);
             }
+
             50% {
                 transform: translateY(-10px);
             }
@@ -798,6 +805,7 @@
             0% {
                 left: -100%;
             }
+
             100% {
                 left: 100%;
             }
@@ -1037,9 +1045,12 @@
         }
 
         @keyframes badgePulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: scale(1);
             }
+
             50% {
                 transform: scale(1.1);
             }
@@ -1392,6 +1403,7 @@
             .game-sidebar {
                 width: 250px;
             }
+
             .container {
                 margin-left: 250px;
             }
@@ -1405,33 +1417,74 @@
                 border-right: none;
                 border-bottom: 3px solid #667eea;
             }
+
             .container {
                 margin-left: 0;
             }
         }
 
         @keyframes popIn {
-            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
-            50% { transform: translate(-50%, -50%) scale(1.1); }
-            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 0;
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
         }
 
         @keyframes popOut {
-            0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-            100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 0;
+            }
         }
 
         @keyframes levelUpPulse {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); }
-            25% { transform: translate(-50%, -50%) scale(1.1); }
-            50% { transform: translate(-50%, -50%) scale(0.95); }
-            75% { transform: translate(-50%, -50%) scale(1.05); }
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            25% {
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(0.95);
+            }
+
+            75% {
+                transform: translate(-50%, -50%) scale(1.05);
+            }
         }
 
         @keyframes badgeUnlock {
-            0% { transform: translate(-50%, -50%) scale(0) rotate(0deg); opacity: 0; }
-            50% { transform: translate(-50%, -50%) scale(1.2) rotate(180deg); }
-            100% { transform: translate(-50%, -50%) scale(1) rotate(360deg); opacity: 1; }
+            0% {
+                transform: translate(-50%, -50%) scale(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.2) rotate(180deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) scale(1) rotate(360deg);
+                opacity: 1;
+            }
         }
     </style>
 </head>
@@ -1545,8 +1598,10 @@
                         <input type="date" id="rangeStartDate" class="form-input" placeholder="시작일">
                         <input type="date" id="rangeEndDate" class="form-input" placeholder="종료일">
                     </div>
-                    <input type="text" id="rangeTitle" class="form-input" placeholder="일정 제목 (예: 제주도 여행)" style="margin-top: 10px;">
-                    <button class="btn-primary" onclick="saveRangeSchedule()" style="width: 100%; margin-top: 10px;">장기 일정 저장</button>
+                    <input type="text" id="rangeTitle" class="form-input" placeholder="일정 제목 (예: 제주도 여행)"
+                        style="margin-top: 10px;">
+                    <button class="btn-primary" onclick="saveRangeSchedule()" style="width: 100%; margin-top: 10px;">장기
+                        일정 저장</button>
                 </div>
             </div>
 
@@ -1660,10 +1715,12 @@
             initGameSystem();
             updateCalendar();
             updateSchedulePanel();
+            updateCharacterImage();
         };
 
         function loadData() {
             const saved = localStorage.getItem('calendarData');
+
             if (saved) {
                 const data = JSON.parse(saved);
                 scheduleData = data.scheduleData || {};
@@ -1671,6 +1728,15 @@
                 recordData = data.recordData || {};
                 customColors = data.customColors || {};
                 rangeSchedules = data.rangeSchedules || [];
+            }else{
+                
+                const data = {"scheduleData":{"2025-12-22":[{"time":"20:20","content":"학원 정보 찾기","completed":false}],"2025-12-23":[{"time":"20:30","content":"일기쓰기","completed":false}],"2025-12-24":[{"time":"15:00","content":"운동하러 가기","completed":false}],"2025-12-25":[{"time":"20:30","content":"크리스마스","completed":false}],"2025-12-29":[{"time":"20:25","content":"일본어 공부","completed":false}],"2025-12-30":[{"time":"18:00","content":"일본어 공부","completed":false},{"time":"19:00","content":"IT공부","completed":false},{"time":"12:00","content":"은행가기","completed":false,"priority":"urgent"}],"2025-12-31":[{"time":"20:00","content":"게임 만들어보기","completed":false},{"time":"13:00","content":"부모님께 연락드리기","completed":false,"priority":"important"}],"2025-12-15":[{"time":"","content":"","completed":false}],"2025-12-21":[{"time":"13:00","content":"운동하기","completed":false}]},"diaryData":{},"recordData":{},"customColors":{"2025-12-25":"#ffd700","2025-12-26":"#ffd700"},"rangeSchedules":[{"start":"2025-12-25","end":"2025-12-27","title":"집가기","color":"#bee1d0"}]};
+                scheduleData = data.scheduleData || {};
+                diaryData = data.diaryData || {};
+                recordData = data.recordData || {};
+                customColors = data.customColors || {};
+                rangeSchedules = data.rangeSchedules || [];
+                saveData();
             }
         }
 
@@ -1723,6 +1789,29 @@
                 saveGameData();
             }
         }
+        function updateCharacterImage() {
+            const characterImage = document.querySelector('.character-image');
+            if (!characterImage) return; // 이미지가 없으면 함수 종료
+
+            let imageFileName = 'character1.png'; // 기본 이미지
+            level = gameData.level;
+
+            console.log(level);
+
+            // 레벨 구간에 따라 이미지 파일 이름 결정
+            if (level == 1) {
+                imageFileName = 'character1.png'; // 레벨 1~9
+            } else if (level ==2) {
+                imageFileName = 'character2.png'; // 레벨 10~19
+            } else if (level ==3) {
+                imageFileName = 'character3.png'; // 레벨 20~29
+            }
+            // 필요한 만큼 레벨 구간을 추가하세요.
+
+            // 이미지의 src 속성 변경
+            characterImage.src = imageFileName;
+            characterImage.alt = `${level} 레벨 캐릭터`; // alt 텍스트도 업데이트
+        }
 
         function createGameSidebar() {
             const sidebar = document.createElement('div');
@@ -1731,7 +1820,7 @@
 
             sidebar.innerHTML = `
                 <div class="character-section">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='80'%3E🧑%3C/text%3E%3C/svg%3E" alt="캐릭터" class="character-image" onclick="characterClick()">
+                    <img src="character1.png" alt="캐릭터" class="character-image" onclick="characterClick()">
                     <div class="level-info">
                         레벨 <span id="playerLevel">1</span>
                     </div>
@@ -1745,7 +1834,7 @@
                 
                 <div class="quest-section">
                     <div class="quest-section-title">
-                        📋 오늘의 생성된 퀘스트
+                        📋 오늘의 일일 퀘스트
                     </div>
                     <div id="scheduleQuestList"></div>
                     <button class="edit-schedule-btn" onclick="editTodaySchedule()">✏️ 일정 편집</button>
@@ -1753,10 +1842,10 @@
         
                 <div class="weekly-quest-section">
                     <div class="quest-section-title">
-                        📅 일일 퀘스트
+                        📅 주간 퀘스트
                     </div>
                     <div id="weeklyQuestList"></div>
-                    <button class="add-quest-btn" onclick="addWeeklyQuest()">+ 일일 퀘스트 추가</button>
+                    <button class="add-quest-btn" onclick="addWeeklyQuest()">+ 주간 퀘스트 추가</button>
                 </div>
         
                 <div class="goal-section">
@@ -1784,6 +1873,7 @@
             updateMiniBadges();
             updateWeeklyQuestList();
             updateScheduleQuestList();
+            updateCharacterImage();
         }
 
         function updateMiniBadges() {
@@ -1831,7 +1921,7 @@
         }
 
         function addWeeklyQuest() {
-            const title = prompt('일일 퀘스트 제목:');
+            const title = prompt('주간 퀘스트 제목:');
             if (!title) return;
 
             const startDate = prompt('시작일 (예: 2025-12-01):');
@@ -1928,13 +2018,26 @@
                 updateGameUI();
             }
         }
+        function getTodayKey() {
+            const today = new Date();
+            return `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+        }
+        function updateTodayDailyQuests() {
+            const todayKey = getTodayKey();
+
+            dailyQuests = schedules.filter(schedule => {
+                return schedule.date === todayKey;
+            });
+        }
 
         function updateScheduleQuestList() {
             const questList = document.getElementById('scheduleQuestList');
-            const today = panelDate || new Date();
-            const dateKey = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+            //const today = panelDate || new Date();
+            //const dateKey = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+            const today = new Date();
+            const dateKey = getTodayKey()
             const schedules = scheduleData[dateKey] || [];
-
+            console.log(today);
             if (schedules.length === 0) {
                 questList.innerHTML = '<div class="empty-schedule" style="padding: 20px; text-align: center; color: #999;">오늘 일정이 없습니다</div>';
                 return;
@@ -3033,4 +3136,5 @@
         }
     </script>
 </body>
+
 </html>
